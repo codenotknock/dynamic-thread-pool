@@ -2,6 +2,7 @@ package com.xiaofu.dynamic.thread.pool.sdk.domain;
 
 import com.xiaofu.dynamic.thread.pool.sdk.domain.model.dto.UpdateThreadPoolConfigDTO;
 import com.xiaofu.dynamic.thread.pool.sdk.domain.model.entity.ThreadPoolConfigEntity;
+import com.xiaofu.dynamic.thread.pool.sdk.domain.model.hook.ResizableCapacityLinkedBlockingQueue;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -80,6 +81,11 @@ public class DynamicThreadPoolService implements IDynamicThreadPoolService {
             threadPoolExecutor.setMaximumPoolSize(updateThreadPoolConfigDTO.getMaximumPoolSize());
             threadPoolExecutor.setCorePoolSize(updateThreadPoolConfigDTO.getCorePoolSize());
         }
+
+        // 变更阻塞队列的大小
+        ResizableCapacityLinkedBlockingQueue queue =
+                (ResizableCapacityLinkedBlockingQueue) threadPoolExecutor.getQueue();
+        queue.setCapacity(updateThreadPoolConfigDTO.getQueueCapacity());
 
         return true;
     }

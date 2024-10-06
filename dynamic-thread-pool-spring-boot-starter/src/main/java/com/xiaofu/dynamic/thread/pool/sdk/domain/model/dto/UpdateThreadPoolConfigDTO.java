@@ -36,4 +36,25 @@ public class UpdateThreadPoolConfigDTO {
      */
     private Integer maximumPoolSize;
 
+    /**
+     * 队列容量
+     */
+    private Integer queueCapacity;
+
+    public static UpdateThreadPoolConfigDTO build(
+            String applicationName,
+            String threadPoolName,
+            Integer corePoolSize,
+            Integer maximumPoolSize,
+            Integer queueCapacity) {
+
+        UpdateThreadPoolConfigDTO updateThreadPoolConfigDTO = new UpdateThreadPoolConfigDTO();
+        updateThreadPoolConfigDTO.setApplicationName(applicationName);
+        updateThreadPoolConfigDTO.setThreadPoolName(threadPoolName);
+        updateThreadPoolConfigDTO.setCorePoolSize(corePoolSize);
+        updateThreadPoolConfigDTO.setMaximumPoolSize(maximumPoolSize);
+        updateThreadPoolConfigDTO.setQueueCapacity(queueCapacity);
+
+        return updateThreadPoolConfigDTO;
+    }
 }
