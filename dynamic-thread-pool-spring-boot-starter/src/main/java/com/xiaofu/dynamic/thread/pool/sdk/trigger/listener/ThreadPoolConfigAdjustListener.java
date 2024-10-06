@@ -1,7 +1,7 @@
-package com.xiaofu.dynamic.thread.pool.trigger.listener;
+package com.xiaofu.dynamic.thread.pool.sdk.trigger.listener;
 
 import com.alibaba.fastjson2.JSON;
-import com.xiaofu.dynamic.thread.pool.registry.IRegistry;
+import com.xiaofu.dynamic.thread.pool.sdk.registry.IRegistry;
 import com.xiaofu.dynamic.thread.pool.sdk.domain.IDynamicThreadPoolService;
 import com.xiaofu.dynamic.thread.pool.sdk.domain.model.dto.UpdateThreadPoolConfigDTO;
 import com.xiaofu.dynamic.thread.pool.sdk.domain.model.entity.ThreadPoolConfigEntity;

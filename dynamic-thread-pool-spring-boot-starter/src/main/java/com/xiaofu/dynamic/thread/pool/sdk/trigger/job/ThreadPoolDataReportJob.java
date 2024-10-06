@@ -1,9 +1,8 @@
-package com.xiaofu.dynamic.thread.pool.trigger.job;
+package com.xiaofu.dynamic.thread.pool.sdk.trigger.job;
 
 import com.alibaba.fastjson2.JSON;
-import com.xiaofu.dynamic.thread.pool.registry.IRegistry;
+import com.xiaofu.dynamic.thread.pool.sdk.registry.IRegistry;
 import com.xiaofu.dynamic.thread.pool.sdk.domain.IDynamicThreadPoolService;
-import com.xiaofu.dynamic.thread.pool.sdk.domain.model.dto.UpdateThreadPoolConfigDTO;
 import com.xiaofu.dynamic.thread.pool.sdk.domain.model.entity.ThreadPoolConfigEntity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

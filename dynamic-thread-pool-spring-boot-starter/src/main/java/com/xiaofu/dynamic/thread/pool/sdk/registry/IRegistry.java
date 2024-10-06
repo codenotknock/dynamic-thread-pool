@@ -1,4 +1,4 @@
-package com.xiaofu.dynamic.thread.pool.registry;
+package com.xiaofu.dynamic.thread.pool.sdk.registry;
 
 import com.xiaofu.dynamic.thread.pool.sdk.domain.model.entity.ThreadPoolConfigEntity;
 

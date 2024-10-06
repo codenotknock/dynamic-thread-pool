@@ -1,6 +1,6 @@
-package com.xiaofu.dynamic.thread.pool.registry.redis;
+package com.xiaofu.dynamic.thread.pool.sdk.registry.redis;
 
-import com.xiaofu.dynamic.thread.pool.registry.IRegistry;
+import com.xiaofu.dynamic.thread.pool.sdk.registry.IRegistry;
 import com.xiaofu.dynamic.thread.pool.sdk.domain.model.entity.ThreadPoolConfigEntity;
 import com.xiaofu.dynamic.thread.pool.sdk.domain.model.enums.RegistryEnum;
 import org.redisson.api.RBucket;

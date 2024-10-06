@@ -1,14 +1,14 @@
 package com.xiaofu.dynamic.thread.pool.sdk.config;
 
 import com.alibaba.fastjson2.JSON;
-import com.xiaofu.dynamic.thread.pool.registry.IRegistry;
-import com.xiaofu.dynamic.thread.pool.registry.redis.RedisRegistry;
+import com.xiaofu.dynamic.thread.pool.sdk.registry.IRegistry;
+import com.xiaofu.dynamic.thread.pool.sdk.registry.redis.RedisRegistry;
 import com.xiaofu.dynamic.thread.pool.sdk.domain.DynamicThreadPoolService;
 import com.xiaofu.dynamic.thread.pool.sdk.domain.IDynamicThreadPoolService;
 import com.xiaofu.dynamic.thread.pool.sdk.domain.model.entity.ThreadPoolConfigEntity;
 import com.xiaofu.dynamic.thread.pool.sdk.domain.model.enums.RegistryEnum;
-import com.xiaofu.dynamic.thread.pool.trigger.job.ThreadPoolDataReportJob;
-import com.xiaofu.dynamic.thread.pool.trigger.listener.ThreadPoolConfigAdjustListener;
+import com.xiaofu.dynamic.thread.pool.sdk.trigger.job.ThreadPoolDataReportJob;
+import com.xiaofu.dynamic.thread.pool.sdk.trigger.listener.ThreadPoolConfigAdjustListener;
 import jodd.util.StringUtil;
 import org.redisson.api.RTopic;
 import org.redisson.api.RedissonClient;
