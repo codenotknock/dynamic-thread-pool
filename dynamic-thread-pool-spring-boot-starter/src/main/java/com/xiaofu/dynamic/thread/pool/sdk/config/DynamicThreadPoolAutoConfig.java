@@ -1,13 +1,19 @@
 package com.xiaofu.dynamic.thread.pool.sdk.config;
 
 import com.alibaba.fastjson2.JSON;
+import com.xiaofu.dynamic.thread.pool.registry.IRegistry;
+import com.xiaofu.dynamic.thread.pool.registry.redis.RedisRegistry;
 import com.xiaofu.dynamic.thread.pool.sdk.domain.DynamicThreadPoolService;
+import com.xiaofu.dynamic.thread.pool.sdk.domain.model.entity.ThreadPoolConfigEntity;
+import com.xiaofu.dynamic.thread.pool.sdk.domain.model.enums.RegistryEnum;
 import jodd.util.StringUtil;
+import org.redisson.api.RedissonClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 
 import java.util.Map;
 import java.util.Set;
@@ -20,6 +26,7 @@ import java.util.concurrent.ThreadPoolExecutor;
  * @description 动态线程池配置类
  **/
 @Configuration
+@Import(DynamicThreadPooRegistryRedisConfig.class)
 public class DynamicThreadPoolAutoConfig {
     private static final Logger LOGGER = LoggerFactory.getLogger(DynamicThreadPoolAutoConfig.class);
 
@@ -28,7 +35,8 @@ public class DynamicThreadPoolAutoConfig {
     @Bean("dynamicThreadPoolAService")
     public DynamicThreadPoolService dynamicThreadPoolAService(
             ApplicationContext applicationContext,
-            Map<String, ThreadPoolExecutor> threadPoolExecutorMap) {
+            Map<String, ThreadPoolExecutor> threadPoolExecutorMap,
+            RedissonClient redissonClient) {
         applicationName = applicationContext.getEnvironment().getProperty("spring.application.name");
 
         if (StringUtil.isBlank(applicationName)) {
@@ -50,6 +58,11 @@ public class DynamicThreadPoolAutoConfig {
         LOGGER.info("线程池信息：{}", JSON.toJSONString(threadPoolExecutorKeys));
 
         return new DynamicThreadPoolService(applicationName, threadPoolExecutorMap);
+    }
+
+    @Bean
+    public IRegistry redisRegistry(RedissonClient dynamicThreadRedissonClient) {
+        return new RedisRegistry(dynamicThreadRedissonClient);
     }
 
 
