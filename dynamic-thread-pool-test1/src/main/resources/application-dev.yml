@@ -1,0 +1,27 @@
+server:
+  port: 8091
+
+
+# 线程池配置
+thread:
+  pool:
+    executor:
+      config:
+        core-pool-size: 20
+        max-pool-size: 50
+        keep-alive-time: 5000
+        block-queue-size: 5000
+        policy: CallerRunsPolicy
+
+
+# 动态线程池配置
+dynamic:
+  thread:
+    pool:
+      registry:
+        redis:
+          enable: true
+          host: 47.98.115.202
+          port: 6379
+          password: xiaofu
+        report-cron: 0/20 * * * * ?
