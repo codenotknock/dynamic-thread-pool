@@ -3,6 +3,7 @@ package com.xiaofu.dynamic.thread.pool.sdk.domain;
 import com.xiaofu.dynamic.thread.pool.sdk.domain.model.dto.UpdateThreadPoolConfigDTO;
 import com.xiaofu.dynamic.thread.pool.sdk.domain.model.entity.ThreadPoolConfigEntity;
 import com.xiaofu.dynamic.thread.pool.sdk.domain.model.hook.ResizableCapacityLinkedBlockingQueue;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -51,18 +52,25 @@ public class DynamicThreadPoolService implements IDynamicThreadPoolService {
     @Override
     public Boolean updateThreadPoolConfig(UpdateThreadPoolConfigDTO updateThreadPoolConfigDTO) {
         if (updateThreadPoolConfigDTO == null) {
+            LOGGER.warn("updateThreadPoolConfig: updateThreadPoolConfigDTO is null");
             return false;
         }
 
         if (!Objects.equals(updateThreadPoolConfigDTO.getApplicationName(), applicationName)) {
+            LOGGER.warn("updateThreadPoolConfig: Application name mismatch. Expected: {}, Actual: {}",
+                    applicationName, updateThreadPoolConfigDTO.getApplicationName());
             return false;
         }
+
         String threadPoolName = updateThreadPoolConfigDTO.getThreadPoolName();
-        if (threadPoolName == null) {
+        if (StringUtils.isEmpty(threadPoolName)) {
+            LOGGER.warn("updateThreadPoolConfig: threadPoolName is empty or null");
             return false;
         }
+
         ThreadPoolExecutor threadPoolExecutor = threadPoolExecutorMap.get(threadPoolName);
         if (threadPoolExecutor == null) {
+            LOGGER.warn("updateThreadPoolConfig: ThreadPoolExecutor not found for threadPoolName: {}", threadPoolName);
             return false;
         }
         Integer corePoolSize = updateThreadPoolConfigDTO.getCorePoolSize();

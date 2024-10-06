@@ -1,9 +1,9 @@
 package com.xiaofu.dynamic.thread.pool.sdk.trigger.job;
 
 import com.alibaba.fastjson2.JSON;
-import com.xiaofu.dynamic.thread.pool.sdk.registry.IRegistry;
 import com.xiaofu.dynamic.thread.pool.sdk.domain.IDynamicThreadPoolService;
 import com.xiaofu.dynamic.thread.pool.sdk.domain.model.entity.ThreadPoolConfigEntity;
+import com.xiaofu.dynamic.thread.pool.sdk.registry.IRegistry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -29,7 +29,7 @@ public class ThreadPoolDataReportJob {
         this.registry = registry;
     }
 
-    @Scheduled(cron = "${dynamic.thread.pool.registry.reportCron}")
+    @Scheduled(cron = "${dynamic.thread.pool.registry.report-cron}")
     public void reportThreadPoolData() {
         List<ThreadPoolConfigEntity> threadPoolConfigEntities = dynamicThreadPoolService.queryThreadPoolList();
         registry.reportThreadPool(threadPoolConfigEntities);
