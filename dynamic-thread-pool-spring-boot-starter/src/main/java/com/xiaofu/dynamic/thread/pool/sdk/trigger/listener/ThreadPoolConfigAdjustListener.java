@@ -32,14 +32,17 @@ public class ThreadPoolConfigAdjustListener implements MessageListener<ThreadPoo
 
     @Override
     public void onMessage(CharSequence charSequence, ThreadPoolConfigEntity threadPoolConfigEntity) {
-        LOGGER.info("动态线程池，调整线程池配置。线程池名称:{} 核心线程数:{} 最大线程数:{}", threadPoolConfigEntity.getThreadPoolName(), threadPoolConfigEntity.getPoolSize(), threadPoolConfigEntity.getMaximumPoolSize());
+        LOGGER.info("动态线程池，调整线程池配置。线程池名称:{} 核心线程数:{} 最大线程数:{}", threadPoolConfigEntity.getThreadPoolName(),
+                threadPoolConfigEntity.getPoolSize(), threadPoolConfigEntity.getMaximumPoolSize());
+
         dynamicThreadPoolService.updateThreadPoolConfig(UpdateThreadPoolConfigDTO.build(threadPoolConfigEntity));
 
         // 更新后上报最新数据
         List<ThreadPoolConfigEntity> threadPoolConfigEntities = dynamicThreadPoolService.queryThreadPoolList();
         registry.reportThreadPool(threadPoolConfigEntities);
 
-        ThreadPoolConfigEntity threadPoolConfigEntityCurrent = dynamicThreadPoolService.queryThreadPoolConfigByName(threadPoolConfigEntity.getThreadPoolName());
+        ThreadPoolConfigEntity threadPoolConfigEntityCurrent = dynamicThreadPoolService.queryThreadPoolConfigByName(
+                threadPoolConfigEntity.getThreadPoolName());
         registry.reportThreadPoolConfigParameter(threadPoolConfigEntityCurrent);
         LOGGER.info("动态线程池，上报线程池配置：{}", JSON.toJSONString(threadPoolConfigEntity));
     }

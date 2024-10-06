@@ -19,7 +19,7 @@ public class ThreadPoolConfigEntity {
     /**
      * 应用名称
      */
-    private String appName;
+    private String applicationName;
 
     /**
      * 线程池名称
@@ -65,8 +65,8 @@ public class ThreadPoolConfigEntity {
     public ThreadPoolConfigEntity() {
     }
 
-    public ThreadPoolConfigEntity(String appName, String threadPoolName) {
-        this.appName = appName;
+    public ThreadPoolConfigEntity(String applicationName, String threadPoolName) {
+        this.applicationName = applicationName;
         this.threadPoolName = threadPoolName;
     }
 
@@ -82,7 +82,7 @@ public class ThreadPoolConfigEntity {
     public static ThreadPoolConfigEntity build(String applicationName, String threadPoolName, ThreadPoolExecutor executor) {
         ThreadPoolConfigEntity configEntity = new ThreadPoolConfigEntity();
 
-        configEntity.setAppName(applicationName);
+        configEntity.setApplicationName(applicationName);
         configEntity.setThreadPoolName(threadPoolName);
         configEntity.setCorePoolSize(executor.getCorePoolSize());
         configEntity.setMaximumPoolSize(executor.getMaximumPoolSize());

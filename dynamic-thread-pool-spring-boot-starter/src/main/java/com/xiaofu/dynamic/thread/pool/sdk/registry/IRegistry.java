@@ -21,7 +21,7 @@ public interface IRegistry {
     void reportThreadPool(List<ThreadPoolConfigEntity> threadPoolEntities);
 
     /**
-     * 上报单个线程池配置参数。
+     * 上报单个线程池配置参数
      *
      * @param threadPoolConfigEntity 单个线程池配置实体
      */

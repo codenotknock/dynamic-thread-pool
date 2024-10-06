@@ -10,4 +10,5 @@ dynamic:
           enable: true
           host: 47.98.115.202
           port: 6379
+          password: xiaofu
         report-cron: 0/20 * * * * ?

@@ -45,7 +45,7 @@ public class UpdateThreadPoolConfigDTO {
     public static UpdateThreadPoolConfigDTO build(ThreadPoolConfigEntity threadPoolConfigEntity) {
         UpdateThreadPoolConfigDTO updateThreadPoolConfigDTO = new UpdateThreadPoolConfigDTO();
 
-        updateThreadPoolConfigDTO.setApplicationName(threadPoolConfigEntity.getAppName());
+        updateThreadPoolConfigDTO.setApplicationName(threadPoolConfigEntity.getApplicationName());
         updateThreadPoolConfigDTO.setThreadPoolName(threadPoolConfigEntity.getThreadPoolName());
         updateThreadPoolConfigDTO.setCorePoolSize(threadPoolConfigEntity.getCorePoolSize());
         updateThreadPoolConfigDTO.setMaximumPoolSize(threadPoolConfigEntity.getMaximumPoolSize());
