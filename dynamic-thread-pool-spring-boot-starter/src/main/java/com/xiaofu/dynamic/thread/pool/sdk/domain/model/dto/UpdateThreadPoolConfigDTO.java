@@ -1,5 +1,6 @@
 package com.xiaofu.dynamic.thread.pool.sdk.domain.model.dto;
 
+import com.xiaofu.dynamic.thread.pool.sdk.domain.model.entity.ThreadPoolConfigEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -41,18 +42,14 @@ public class UpdateThreadPoolConfigDTO {
      */
     private Integer queueCapacity;
 
-    public static UpdateThreadPoolConfigDTO build(
-            String applicationName,
-            String threadPoolName,
-            Integer corePoolSize,
-            Integer maximumPoolSize,
-            Integer queueCapacity) {
-
+    public static UpdateThreadPoolConfigDTO build(ThreadPoolConfigEntity threadPoolConfigEntity) {
         UpdateThreadPoolConfigDTO updateThreadPoolConfigDTO = new UpdateThreadPoolConfigDTO();
-        updateThreadPoolConfigDTO.setApplicationName(applicationName);
-        updateThreadPoolConfigDTO.setThreadPoolName(threadPoolName);
-        updateThreadPoolConfigDTO.setCorePoolSize(corePoolSize);
-        updateThreadPoolConfigDTO.setMaximumPoolSize(maximumPoolSize);
+
+        updateThreadPoolConfigDTO.setApplicationName(threadPoolConfigEntity.getAppName());
+        updateThreadPoolConfigDTO.setThreadPoolName(threadPoolConfigEntity.getThreadPoolName());
+        updateThreadPoolConfigDTO.setCorePoolSize(threadPoolConfigEntity.getCorePoolSize());
+        updateThreadPoolConfigDTO.setMaximumPoolSize(threadPoolConfigEntity.getMaximumPoolSize());
+        int queueCapacity =threadPoolConfigEntity.getRemainingCapacity() + threadPoolConfigEntity.getQueueSize();
         updateThreadPoolConfigDTO.setQueueCapacity(queueCapacity);
 
         return updateThreadPoolConfigDTO;
